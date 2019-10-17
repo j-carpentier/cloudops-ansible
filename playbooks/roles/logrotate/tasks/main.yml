@@ -1,0 +1,19 @@
+---
+- name: Copy haproxy logrotate config file
+  copy:
+    src: haproxy
+    dest: /etc/logrotate.d/
+    owner: root
+    group: root
+    mode: '0644'
+  become: true
+
+- name: Create hourly haproxy logrotate cron job symlink based on daily one
+  file:
+    src: /etc/cron.daily/logrotate
+    dest: /etc/cron.hourly/logrotate
+    owner: root
+    group: root
+    state: link
+  become: true
+

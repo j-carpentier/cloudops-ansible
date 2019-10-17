@@ -1,0 +1,17 @@
+# Adding meaningful comment here to share with others
+/var/log/haproxy.log
+{
+    su syslog syslog
+    rotate 24
+    size 500M
+    maxsize 500M
+    hourly
+    missingok
+    notifempty
+    compress
+    delaycompress
+    postrotate
+        invoke-rc.d rsyslog rotate >/dev/null 2>&1 || true
+    endscript
+}
+
