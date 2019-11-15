@@ -7,6 +7,14 @@
   raw: racadm set iDRAC.ServerBoot.FirstBootDevice VCD-DVD
   tags: apply
 
+- name: Set iDRAC attached media to use DELL Update ISO
+  raw: racadm remoteimage -c -u {{ vmedia_user }} -p {{ vmedia_pw }} -l {{ vmedia_mount }}
+  tags: apply
+
+- name: disconnect iDRAC attached media
+  raw: racadm remoteimage -d
+  tags: revert
+
 - name: disable one-time boot
   raw: racadm set iDRAC.VirtualMedia.BootOnce 0
   tags: revert

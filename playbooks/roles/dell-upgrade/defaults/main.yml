@@ -1,0 +1,6 @@
+---
+# Variables used to mount ISO on DELL Virtual Media
+vmedia_user: idrac_user
+vmedia_pw: idrac_password
+vmedia_mount: 192.168.0.180:/path/to/file.iso
+
