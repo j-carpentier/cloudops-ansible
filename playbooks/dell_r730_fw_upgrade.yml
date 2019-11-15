@@ -1,0 +1,5 @@
+- gather_facts: false
+  name: Mounting Dell Update ISO and setting next boot to virtual media
+  hosts: all
+  roles:
+    - dell-upgrade

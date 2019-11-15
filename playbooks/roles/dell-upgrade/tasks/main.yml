@@ -1,0 +1,44 @@
+---
+- name: enable one-time boot
+  raw: racadm set iDRAC.VirtualMedia.BootOnce 1
+  tags: apply
+
+- name: setup one-time boot device to Virtual CD/DVD/ISO
+  raw: racadm set iDRAC.ServerBoot.FirstBootDevice VCD-DVD
+  tags: apply
+
+- name: disable one-time boot
+  raw: racadm set iDRAC.VirtualMedia.BootOnce 0
+  tags: revert
+
+- name: switch back to normal boot order
+  raw: racadm set iDRAC.ServerBoot.FirstBootDevice Normal
+  tags: revert
+
+- name: check virtual media status
+  raw: racadm remoteimage -s
+  register: result_vmedia
+  tags: check
+
+- name: check one-time boot status
+  raw: racadm get iDRAC.VirtualMedia.BootOnce
+  register: result_onetime_boot_status
+  tags: check
+
+- name: check one-time boot device
+  raw: racadm get iDRAC.ServerBoot.FirstBootDevice
+  register: result_onetime_boot_device
+  tags: check
+
+- name: show virtual media status
+  debug: msg="{{ result_vmedia.stdout_lines }}"
+  tags: check
+
+- name: show one-time boot status
+  debug: msg="{{ result_onetime_boot_status.stdout_lines }}"
+  tags: check
+
+- name: show one-time boot device
+  debug: msg="{{ result_onetime_boot_device.stdout_lines }}"
+  tags: check
+

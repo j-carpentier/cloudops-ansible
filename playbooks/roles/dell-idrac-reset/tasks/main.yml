@@ -1,0 +1,7 @@
+---
+- name: soft reset iDRAC
+  raw: racadm racreset
+  register: result
+  
+- name: soft reset command output
+  debug: msg="{{ result.stdout_lines }}"

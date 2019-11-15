@@ -1,0 +1,5 @@
+- gather_facts: false
+  name: Perform soft reset on iDRAC (useful when WebUI or Console stuck)
+  hosts: all
+  roles:
+    - dell-idrac-reset
