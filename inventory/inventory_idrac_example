@@ -1,0 +1,4 @@
+[all]
+first_idrac_ip_address
+second_idrac_ip_address
+idrac_dns0[1:4]

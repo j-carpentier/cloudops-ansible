@@ -1,0 +1,46 @@
+---
+- name: get bios version
+  raw: racadm getversion -f bios
+  register: result_bios
+  tags: bios
+
+- name: get idrac version
+  raw: racadm getversion -f idrac
+  register: result_idrac
+  tags: idrac
+
+- name: get lifecycle version
+  raw: racadm getversion -f lc   
+  register: result_lc   
+  tags: lifecycle
+
+- name: get raid controller model name
+  raw: racadm raid get controllers:RAID.Integrated.1-1 -p Name
+  register: result_raid_name
+  tags: raid
+
+- name: get raid controller firmware version
+  raw: racadm raid get controllers:RAID.Integrated.1-1 -p FirmwareVersion
+  register: result_raid_fw
+  tags: raid
+
+- name: show bios version
+  debug: msg="{{ result_bios.stdout_lines }}" 
+  tags: bios
+
+- name: show idrac version
+  debug: msg="{{ result_idrac.stdout_lines }}"
+  tags: idrac
+
+- name: show lifecycle version
+  debug: msg="{{ result_lc.stdout_lines }}"
+  tags: lifecycle
+
+- name: show raid controller model name
+  debug: msg="{{ result_raid_name.stdout_lines }}"
+  tags: raid
+
+- name: show raid controller firmware version
+  debug: msg="{{ result_raid_fw.stdout_lines }}"
+  tags: raid
+

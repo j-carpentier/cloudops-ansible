@@ -1,0 +1,5 @@
+- gather_facts: false
+  name: Collecting iDRAC information using RACADM
+  hosts: all
+  roles:
+    - idrac-ops
